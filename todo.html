@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    .seratus {
+      width: 100px;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    input {
+        border: none;
+    }
+
+  </style>
+  <body>
+    <section class="vh-100" style="background-color: #e2d5de">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 15px">
+              <div class="card-body p-5">
+                <h6 class="mb-3 text-center fs-2">TODO LIST</h6>
+
+                <form
+                  class="d-flex justify-content-center align-items-center mb-4"
+                  id="todoForm"
+                >
+                  <div class="form-outline flex-fill">
+                    <input
+                      type="text"
+                      id="form3"
+                      class="form-control form-control-lg"
+                    />
+                    <label class="form-label" for="form3"
+                      >What do you need to do today?</label
+                    >
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-lg ms-2">
+                    Add
+                  </button>
+                </form>
+
+                <ul class="list-group mb-0" id="todoList"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document
+        .getElementById("todoForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const inputField = document.getElementById("form3");
+          const text = inputField.value.trim();
+          if (text) {
+            addTodoItem(text);
+            inputField.value = "";
+          }
+        });
+
+      function addTodoItem(text) {
+        const todoList = document.getElementById("todoList");
+        const listItem = document.createElement("li");
+        listItem.className =
+          "list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2";
+
+        listItem.innerHTML = `<div class="d-flex align-items-center" id="div1"><input class="form-check-input me-2" type="checkbox" value="" id="myCheck"><input type="text" class="no-border shadow-none" value="${text}"></div> <div class="d-flex"><button type="button" class="btn btn-danger" title="RemoveItem" onClick="removeTodoItem(this)">Delete</button><button type="button" class="btn btn-success ms-2">Edit</button></div>`;
+
+        todoList.appendChild(listItem);
+        
+        
+      }
+
+      function removeTodoItem(element) {
+        element.parentElement.remove();
+      }
+
+      function changeCheckbox(){
+        const checkbox = document.getElementById("myCheck")
+        const textDec = document.getElementById("div1")
+        if(checkbox.checked == true){
+            textDec.classList.add("text-decoration-line-through")
+        }else {
+
+        }
+      }
+
+      
+    </script>
+  </body>
+</html>
